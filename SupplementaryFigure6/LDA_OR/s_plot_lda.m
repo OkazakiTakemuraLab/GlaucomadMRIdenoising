@@ -91,15 +91,15 @@ labels = (label)';
 scatter(data(1:30,1), data(1:30,2), 's', 'MarkerEdgeColor', '#669CCC', 'MarkerFaceColor', '#669CCC');
 hold on;
 scatter(data(31:47,1), data(31:47,2), 'o', 'MarkerEdgeColor', '#D71317', 'MarkerFaceColor', '#D71317');
-lda = fitcdiscr(data(:,1:2), labels,"DiscrimType", "linear");
-ldaClass = resubPredict(lda);
-ldaResubErr2 = resubLoss(lda);
+lda_wo = fitcdiscr(data(:,1:2), labels,"DiscrimType", "linear");
+ldaClass_wo = resubPredict(lda_wo);
+
 % Add decision boundary
 xrange = linspace(0.4, 0.8, 2000);
 yrange = linspace(0.6, 0.9, 2000);
 [X, Y] = meshgrid(xrange, yrange); 
 gridX = [X(:), Y(:)];
-decisionBoundary = predict(lda, gridX);
+decisionBoundary = predict(lda_wo, gridX);
 decisionBoundary = reshape(decisionBoundary, size(X));
 contour(X, Y, decisionBoundary, [0.5 0.5], 'k--', 'LineWidth', 2);
 xlabel('FA','fontsize',16);
@@ -113,9 +113,9 @@ set(gca, 'tickdir', 'out', ...
     'xlim', [0.4 0.8], 'xtick', [0.4 0.6 0.8], ...
     'ylim', [0.6 0.9], 'ytick', [0.6 0.7 0.8 0.9], 'fontsize',15);
 
-cvlda_wo = crossval(lda, 'Leaveout', 'on');
+cvlda_wo = crossval(lda_wo, 'Leaveout', 'on');
 cvErr_wo = kfoldLoss(cvlda_wo);
-resubErr_wo = resubLoss(lda);
+resubErr_wo = resubLoss(lda_wo);
 
 M1 = 0.8;
 m1 = 0.4;
@@ -135,15 +135,15 @@ labels = (label)';
 scatter(data(1:30,1), data(1:30,2), 's', 'MarkerEdgeColor', '#669CCC', 'MarkerFaceColor', '#669CCC');
 hold on;
 scatter(data(31:47,1), data(31:47,2), 'o', 'MarkerEdgeColor', '#D71317', 'MarkerFaceColor', '#D71317');
-lda = fitcdiscr(data(:,1:2), labels,"DiscrimType", "linear");
-ldaClass = resubPredict(lda);
-ldaResubErr1 = resubLoss(lda);
+lda_P2S = fitcdiscr(data(:,1:2), labels,"DiscrimType", "linear");
+ldaClass_P2S = resubPredict(lda_P2S);
+
 % Add decision boundary
 xrange = linspace(0.4, 0.8, 2000);
 yrange = linspace(0.6, 0.9, 2000);
 [X, Y] = meshgrid(xrange, yrange); 
 gridX = [X(:), Y(:)];
-decisionBoundary = predict(lda, gridX);
+decisionBoundary = predict(lda_P2S, gridX);
 decisionBoundary = reshape(decisionBoundary, size(X));
 contour(X, Y, decisionBoundary, [0.5 0.5], 'k--', 'LineWidth', 2);
 xlabel('FA','fontsize',16);
@@ -156,9 +156,9 @@ set(gca, 'tickdir', 'out', ...
     'xlim', [0.4 0.8], 'xtick', [0.4 0.6 0.8], ...
     'ylim', [0.6 0.9], 'ytick', [0.6 0.7 0.8 0.9], 'fontsize',15);
 
-cvlda_P2S = crossval(lda, 'Leaveout', 'on');
+cvlda_P2S = crossval(lda_P2S, 'Leaveout', 'on');
 cvErr_P2S = kfoldLoss(cvlda_P2S);
-resubErr_P2S = resubLoss(lda);
+resubErr_P2S = resubLoss(lda_P2S);
 
 M1 = 0.8;
 m1 = 0.4;
@@ -167,6 +167,25 @@ m2 = 0.6;
 r_resubErr_P2S = round(resubErr_P2S, 2);
 titletext = ['MP = ', num2str(r_resubErr_P2S)];
 text((M1-m1)*0.61+m1, (M2-m2)*0.07+m2, titletext, 'fontsize', 16);
+
+%% Create contingency table
+% True label: labels
+% Predicted by Without denoising: ldaClass_wo
+% Predicted by With P2S: ldaClass_P2S
+
+% Calculate the contingency table
+a = sum((ldaClass_wo == labels) & (ldaClass_P2S == labels)); % Both correct
+b = sum((ldaClass_wo == labels) & (ldaClass_P2S ~= labels)); % wo correct, P2S incorrect
+c = sum((ldaClass_wo ~= labels) & (ldaClass_P2S == labels)); % wo incorrect, P2S correct
+d = sum((ldaClass_wo ~= labels) & (ldaClass_P2S ~= labels)); % Both incorrect
+
+contingency_table = [a b; c d];
+
+%% Perform McNemar's test
+disp('Contingency Table:');
+disp(contingency_table);
+addpath('../../ExternalTools');
+mcnemar(contingency_table, 0.05); % Alpha = 0.05
 
 %% NODDI
 %% without denoising
@@ -179,15 +198,15 @@ labels = (label)';
 scatter(data(1:30,1), data(1:30,2), 's', 'MarkerEdgeColor', '#669CCC', 'MarkerFaceColor', '#669CCC');
 hold on;
 scatter(data(31:47,1), data(31:47,2), 'o', 'MarkerEdgeColor', '#D71317', 'MarkerFaceColor', '#D71317');
-lda = fitcdiscr(data(:,1:2), labels,"DiscrimType", "linear");
-ldaClass = resubPredict(lda);
-ldaResubErr2 = resubLoss(lda);
+lda_wo = fitcdiscr(data(:,1:2), labels,"DiscrimType", "linear");
+ldaClass_wo = resubPredict(lda_wo);
+
 % Add decision boundary
 xrange = linspace(0.4, 0.8, 2000);
 yrange = linspace(0.1, 0.3, 2000);
 [X, Y] = meshgrid(xrange, yrange); 
 gridX = [X(:), Y(:)];
-decisionBoundary = predict(lda, gridX);
+decisionBoundary = predict(lda_wo, gridX);
 decisionBoundary = reshape(decisionBoundary, size(X));
 contour(X, Y, decisionBoundary, [0.5 0.5], 'k--', 'LineWidth', 2);
 xlabel('ICVF','fontsize',16);
@@ -200,9 +219,9 @@ set(gca, 'tickdir', 'out', ...
     'xlim', [0.4 0.7], 'xtick', [0.4 0.5 0.6 0.7], ...
     'ylim', [0.1 0.3], 'ytick', [0.1 0.2 0.3], 'fontsize',15);
 
-cvlda_wo = crossval(lda, 'Leaveout', 'on');
+cvlda_wo = crossval(lda_wo, 'Leaveout', 'on');
 cvErr_wo = kfoldLoss(cvlda_wo);
-resubErr_wo = resubLoss(lda);
+resubErr_wo = resubLoss(lda_wo);
 
 M1 = 0.7;
 m1 = 0.4;
@@ -222,15 +241,15 @@ labels = (label)';
 scatter(data(1:30,1), data(1:30,2), 's', 'MarkerEdgeColor', '#669CCC', 'MarkerFaceColor', '#669CCC');
 hold on;
 scatter(data(31:47,1), data(31:47,2), 'o', 'MarkerEdgeColor', '#D71317', 'MarkerFaceColor', '#D71317');
-lda = fitcdiscr(data(:,1:2), labels,"DiscrimType", "linear");
-ldaClass = resubPredict(lda);
-ldaResubErr1 = resubLoss(lda);
+lda_P2S = fitcdiscr(data(:,1:2), labels,"DiscrimType", "linear");
+ldaClass_P2S = resubPredict(lda_P2S);
+
 % Add decision boundary
 xrange = linspace(0.4, 0.7, 2000);
 yrange = linspace(0.1, 0.3, 2000);
 [X, Y] = meshgrid(xrange, yrange); 
 gridX = [X(:), Y(:)];
-decisionBoundary = predict(lda, gridX);
+decisionBoundary = predict(lda_P2S, gridX);
 decisionBoundary = reshape(decisionBoundary, size(X));
 contour(X, Y, decisionBoundary, [0.5 0.5], 'k--', 'LineWidth', 2);
 xlabel('ICVF','fontsize',16);
@@ -243,9 +262,9 @@ set(gca, 'tickdir', 'out', ...
     'xlim', [0.4 0.7], 'xtick', [0.4 0.5 0.6 0.7], ...
     'ylim', [0.1 0.3], 'ytick', [0.1 0.2 0.3], 'fontsize',15);
 
-cvlda_P2S = crossval(lda, 'Leaveout', 'on');
+cvlda_P2S = crossval(lda_P2S, 'Leaveout', 'on');
 cvErr_P2S = kfoldLoss(cvlda_P2S);
-resubErr_P2S = resubLoss(lda);
+resubErr_P2S = resubLoss(lda_P2S);
 
 M1 = 0.7;
 m1 = 0.4;
@@ -256,5 +275,24 @@ titletext = ['MP = ', num2str(r_resubErr_P2S)];
 text((M1-m1)*0.61+m1, (M2-m2)*0.07+m2, titletext, 'fontsize', 16);
 
 print(gcf, 'LDA_OR.eps', '-depsc', '-painters');
+
+%% Create contingency table
+% True label: labels
+% Predicted by Without denoising: ldaClass_wo
+% Predicted by With P2S: ldaClass_P2S
+
+% Calculate the contingency table
+a = sum((ldaClass_wo == labels) & (ldaClass_P2S == labels)); % Both correct
+b = sum((ldaClass_wo == labels) & (ldaClass_P2S ~= labels)); % wo correct, P2S incorrect
+c = sum((ldaClass_wo ~= labels) & (ldaClass_P2S == labels)); % wo incorrect, P2S correct
+d = sum((ldaClass_wo ~= labels) & (ldaClass_P2S ~= labels)); % Both incorrect
+
+contingency_table = [a b; c d];
+
+%% Perform McNemar's test
+disp('Contingency Table:');
+disp(contingency_table);
+addpath('../../ExternalTools');
+mcnemar(contingency_table, 0.05); % Alpha = 0.05
 
 end
