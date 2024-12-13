@@ -1,6 +1,6 @@
 function s_plotSNR_ave
 
-% This script aims to replicate a panel in Figure 4 of the following
+% This script aims to replicate a panel B of Figure 4 of the following
 % article:
 % Taguma, D., Ogawa, S. & Takemura, H. (2024) Evaluating the impact of
 % denoising in diffusion MRI-based tractometry of visual white matter
@@ -8,8 +8,8 @@ function s_plotSNR_ave
 %
 % Daiki Taguma, NIPS SCBM/SOKENDAI
 
-% Add path to violin plot script
-addpath('../../ExternalTools/Violinplot-Matlab-master');
+% Add path to external tools
+addpath(genpath('../../ExternalTools'));
 
 %% Load left optic tract SNR data and compute averages
 load ../../Data/EstimatedSNR/OT/LOT_EstimatedSNR.mat
@@ -35,9 +35,9 @@ pbaspect([1 1.618 1])
 ylabel('SNR (low b-value)','fontsize',16);
 hold on
 set(gca, 'xtick', 1:2, 'xticklabel', {'Without Denoising', 'With MPPCA'});
-% Violin plots 
+% Violin plots
 Violin({x}, 1, 'ViolinColor', {[1 0.84 0.2]}, 'ShowData', false, 'ShowMedian', false, 'ShowBox', false, 'QuartileStyle', 'none', 'ShowMean', true, 'EdgeColor', [1 1 1], 'LineWidth', 2);
-Violin({y}, 2, 'ViolinColor', {[0.92 0.6 0.7]}, 'ShowData', false, 'ShowMedian', false, 'ShowBox', false, 'QuartileStyle', 'none', 'ShowMean', true, 'EdgeColor', [1 1 1], 'LineWidth', 2); 
+Violin({y}, 2, 'ViolinColor', {[0.92 0.6 0.7]}, 'ShowData', false, 'ShowMedian', false, 'ShowBox', false, 'QuartileStyle', 'none', 'ShowMean', true, 'EdgeColor', [1 1 1], 'LineWidth', 2);
 % Plot individual SNR
 for i = 1:30
     plot([1, 2], [x(i), y(i)], '-square','Color','#669CCC');
