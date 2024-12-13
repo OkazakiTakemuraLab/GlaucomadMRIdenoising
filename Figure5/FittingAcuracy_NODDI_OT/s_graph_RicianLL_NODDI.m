@@ -1,6 +1,6 @@
 function s_graph_RicianLL_NODDI
 
-% This script aims to replicate a panel in Figure 5 of the following
+% This script aims to replicate a panel B of Figure 5 in the following
 % article:
 % Taguma, D., Ogawa, S. & Takemura, H. (2024) Evaluating the impact of
 % denoising in diffusion MRI-based tractometry of visual white matter
@@ -9,7 +9,7 @@ function s_graph_RicianLL_NODDI
 % Daiki Taguma, NIPS SCBM/SOKENDAI
 
 % Add path to violin plot script
-addpath('../../ExternalTools/Violinplot-Matlab-master');
+addpath('../../ExternalTools');
 
 %% Load left optic tract data and compute averages
 load ../../Data/FittingAcuracy/OT/LOT_RicianLL_NODDI.mat

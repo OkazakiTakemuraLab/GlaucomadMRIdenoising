@@ -1,6 +1,6 @@
 function s_graph_RMSE_DTI
 
-% This script aims to replicate a panel in Figure 5 of the following
+% This script aims to replicate a panel A of Figure 5 in the following
 % article:
 % Taguma, D., Ogawa, S. & Takemura, H. (2024) Evaluating the impact of
 % denoising in diffusion MRI-based tractometry of visual white matter
@@ -9,7 +9,7 @@ function s_graph_RMSE_DTI
 % Daiki Taguma, NIPS SCBM/SOKENDAI
 
 % Add path to violin plot script
-addpath('../../ExternalTools/Violinplot-Matlab-master');
+addpath('../../ExternalTools');
 
 %% Load RMSE data for left optic tract and compute averages
 load ../../Data/FittingAcuracy/OT/LOT_RMSE_DTI.mat
