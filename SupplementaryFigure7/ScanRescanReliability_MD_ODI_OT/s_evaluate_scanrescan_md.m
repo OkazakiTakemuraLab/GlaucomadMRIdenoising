@@ -1,6 +1,6 @@
 function s_evaluate_scanrescan_md
 
-% This script aims to replicate a panel in Supplementaly Figure 7 of the following
+% This script aims to replicate top panels in Supplementaly Figure 7 of the following
 % article:
 % Taguma, D., Ogawa, S. & Takemura, H. (2024) Evaluating the impact of
 % denoising in diffusion MRI-based tractometry of visual white matter
@@ -65,7 +65,7 @@ M = 1.2;
 m = 0.6;
 text((M-m)*0.62+m, (M-m)*0.07+m, titletext, 'fontsize', 18);
 
-%%MPPCA
+%% MPPCA
 nexttile(2)
 scatter(session1_mdMPPCA_avg(1:30), session2_mdMPPCA_avg(1:30), 25, 'square', 'MarkerEdgeColor', '#669CCC', 'MarkerFaceColor', '#669CCC');
 hold on
@@ -114,5 +114,4 @@ titletext = ['R = ', num2str(r_corr_eff_P2S)];
 text((M-m)*0.62+m, (M-m)*0.07+m, titletext, 'fontsize', 18);
 
 print(gcf, 'scanrescan_md.eps', '-depsc', '-painters');
-
 end

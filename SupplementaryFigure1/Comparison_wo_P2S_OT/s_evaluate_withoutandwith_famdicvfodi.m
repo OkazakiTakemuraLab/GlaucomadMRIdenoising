@@ -1,6 +1,6 @@
 function s_evaluate_withoutandwith_famdicvfodi
 
-% This script aims to replicate a panel in Supplementary Figure 1 of the following
+% This script aims to replicate Supplementary Figure 1 of the following
 % article:
 % Taguma, D., Ogawa, S. & Takemura, H. (2024) Evaluating the impact of
 % denoising in diffusion MRI-based tractometry of visual white matter

@@ -1,6 +1,6 @@
 function s_plotSNR_ave
 
-% This script aims to replicate a panel in Supplementaly Figure 2 of the following
+% This script aims to replicate panel B in Supplementaly Figure 2 of the following
 % article:
 % Taguma, D., Ogawa, S. & Takemura, H. (2024) Evaluating the impact of
 % denoising in diffusion MRI-based tractometry of visual white matter
@@ -9,7 +9,7 @@ function s_plotSNR_ave
 % Daiki Taguma, NIPS SCBM/SOKENDAI
 
 % Add path to violin plot script
-addpath('../../ExternalTools/Violinplot-Matlab-master');
+addpath(genpath('../../ExternalTools'));
 
 %% Load left optic radiation SNR data and compute averages
 load ../../Data/EstimatedSNR/OR/LOR_EstimatedSNR.mat

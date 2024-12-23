@@ -1,6 +1,6 @@
 function s_evaluate_scanrescan_icvf
 
-% This script aims to replicate a panel in Figure 7 of the following
+% This script aims to replicate bottom panels in Figure 7 of the following
 % article:
 % Taguma, D., Ogawa, S. & Takemura, H. (2024) Evaluating the impact of
 % denoising in diffusion MRI-based tractometry of visual white matter
@@ -112,4 +112,3 @@ text((M-m)*0.62+m, (M-m)*0.07+m, titletext, 'fontsize', 18);
 print(gcf, 'scanrescan_icvf.eps', '-depsc', '-painters');
 
 end
-

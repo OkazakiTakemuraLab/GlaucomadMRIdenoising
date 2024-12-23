@@ -1,6 +1,6 @@
 function s_evaluate_scanrescan_odi
 
-% This script aims to replicate a panel in Supplementaly Figure 7 of the following
+% This script aims to replicate bottom panels in Supplementaly Figure 7 of the following
 % article:
 % Taguma, D., Ogawa, S. & Takemura, H. (2024) Evaluating the impact of
 % denoising in diffusion MRI-based tractometry of visual white matter
@@ -114,6 +114,4 @@ titletext = ['R = ', num2str(r_corr_eff_P2S)];
 text((M-m)*0.62+m, (M-m)*0.07+m, titletext, 'fontsize', 18);
 
 print(gcf, 'scanrescan_odi.eps', '-depsc', '-painters');
-
 end
-

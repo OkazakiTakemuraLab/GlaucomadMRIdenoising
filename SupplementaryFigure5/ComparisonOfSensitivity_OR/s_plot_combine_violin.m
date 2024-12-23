@@ -1,6 +1,6 @@
 function s_plot_combine_violin
 
-% This script aims to replicate a panel in Supplementaly Figure 5 of the following
+% This script aims to replicate Supplementaly Figure 5 of the following
 % article:
 % Taguma, D., Ogawa, S. & Takemura, H. (2024) Evaluating the impact of
 % denoising in diffusion MRI-based tractometry of visual white matter
@@ -9,7 +9,7 @@ function s_plot_combine_violin
 % Daiki Taguma, NIPS SCBM/SOKENDAI
 
 % Add path to violin plot script
-addpath('../../ExternalTools/Violinplot-Matlab-master');
+addpath(genpath('../../ExternalTools'));
 
 %% Load left optic radiation SNR data and compute averages
 load ../../Data/TractProfile/OR/LOR_TractProfile.mat
@@ -216,8 +216,4 @@ d
 bf10
 pValue
 stats
-
 end
-
-
-

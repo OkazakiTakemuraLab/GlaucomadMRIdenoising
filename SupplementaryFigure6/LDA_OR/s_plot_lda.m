@@ -1,12 +1,15 @@
 function s_plot_lda
 
-% This script aims to replicate a panel in Supplementaly Figure 6 of the following
+% This script aims to replicate Supplementaly Figure 6 of the following
 % article:
 % Taguma, D., Ogawa, S. & Takemura, H. (2024) Evaluating the impact of
 % denoising in diffusion MRI-based tractometry of visual white matter
 % tracts in glaucoma patients.
 %
 % Daiki Taguma, NIPS SCBM/SOKENDAI
+
+% Add path to violin plot script
+addpath(genpath('../../ExternalTools'));
 
 %% Load left optic radiation SNR data and compute averages
 load ../../Data/TractProfile/OR/LOR_TractProfile.mat
@@ -292,7 +295,5 @@ contingency_table = [a b; c d];
 %% Perform McNemar's test
 disp('Contingency Table:');
 disp(contingency_table);
-addpath('../../ExternalTools');
 mcnemar(contingency_table, 0.05); % Alpha = 0.05
-
 end
