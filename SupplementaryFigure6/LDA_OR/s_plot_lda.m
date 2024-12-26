@@ -116,8 +116,6 @@ set(gca, 'tickdir', 'out', ...
     'xlim', [0.4 0.8], 'xtick', [0.4 0.6 0.8], ...
     'ylim', [0.6 0.9], 'ytick', [0.6 0.7 0.8 0.9], 'fontsize',15);
 
-cvlda_wo = crossval(lda_wo, 'Leaveout', 'on');
-cvErr_wo = kfoldLoss(cvlda_wo);
 resubErr_wo = resubLoss(lda_wo);
 
 M1 = 0.8;
@@ -159,8 +157,6 @@ set(gca, 'tickdir', 'out', ...
     'xlim', [0.4 0.8], 'xtick', [0.4 0.6 0.8], ...
     'ylim', [0.6 0.9], 'ytick', [0.6 0.7 0.8 0.9], 'fontsize',15);
 
-cvlda_P2S = crossval(lda_P2S, 'Leaveout', 'on');
-cvErr_P2S = kfoldLoss(cvlda_P2S);
 resubErr_P2S = resubLoss(lda_P2S);
 
 M1 = 0.8;
@@ -185,7 +181,7 @@ d = sum((ldaClass_wo ~= labels) & (ldaClass_P2S ~= labels)); % Both incorrect
 contingency_table = [a b; c d];
 
 %% Perform McNemar's test
-disp('Contingency Table:');
+disp('Contingency Table (DTI):');
 disp(contingency_table);
 addpath('../../ExternalTools');
 mcnemar(contingency_table, 0.05); % Alpha = 0.05
@@ -222,8 +218,6 @@ set(gca, 'tickdir', 'out', ...
     'xlim', [0.4 0.7], 'xtick', [0.4 0.5 0.6 0.7], ...
     'ylim', [0.1 0.3], 'ytick', [0.1 0.2 0.3], 'fontsize',15);
 
-cvlda_wo = crossval(lda_wo, 'Leaveout', 'on');
-cvErr_wo = kfoldLoss(cvlda_wo);
 resubErr_wo = resubLoss(lda_wo);
 
 M1 = 0.7;
@@ -265,8 +259,6 @@ set(gca, 'tickdir', 'out', ...
     'xlim', [0.4 0.7], 'xtick', [0.4 0.5 0.6 0.7], ...
     'ylim', [0.1 0.3], 'ytick', [0.1 0.2 0.3], 'fontsize',15);
 
-cvlda_P2S = crossval(lda_P2S, 'Leaveout', 'on');
-cvErr_P2S = kfoldLoss(cvlda_P2S);
 resubErr_P2S = resubLoss(lda_P2S);
 
 M1 = 0.7;
@@ -293,7 +285,7 @@ d = sum((ldaClass_wo ~= labels) & (ldaClass_P2S ~= labels)); % Both incorrect
 contingency_table = [a b; c d];
 
 %% Perform McNemar's test
-disp('Contingency Table:');
+disp('Contingency Table (NODDI):');
 disp(contingency_table);
 mcnemar(contingency_table, 0.05); % Alpha = 0.05
 end

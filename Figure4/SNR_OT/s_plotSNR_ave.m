@@ -20,8 +20,8 @@ load ../../Data/EstimatedSNR/OT/ROT_EstimatedSNR.mat
 x = (x + (all_SNR.SNR1_wo + all_SNR.SNR2_wo)/2 )/2;
 y = (y + (all_SNR.SNR1_MPPCA + all_SNR.SNR2_MPPCA)/2 )/2;
 % Perform statistical tests
-[h, p, ci, stats]=ttest(x, y,'Tail','both');
 d = computeCohen_d(x,y, 'paired');
+[h, p, ci, stats]=ttest(x, y,'Tail','both');
 [bf10,pValue] = bf.ttest(x,y,'tail','both');
 d, p, stats, bf10
 

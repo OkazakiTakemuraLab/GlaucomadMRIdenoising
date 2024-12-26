@@ -189,31 +189,37 @@ print(gcf, 'combine_violin.eps', '-depsc', '-painters');
 hold off;
 
 %% Statistical comparisons
-x = icvfwo_var;
-y = icvfMPPCA_var;
-z = icvfP2S_var;
+props = {'fa', 'md', 'icvf', 'odi'};
+for i = 1:length(props)
+    prop = props{i};
+    props{i}
+    x = eval([prop, 'wo_var']);
+    y = eval([prop, 'MPPCA_var']);
+    z = eval([prop, 'P2S_var']);
+    
+    d_MPPCA = computeCohen_d(x,y, 'paired');
+    [bf10_MPPCA,pValue_MPPCA] = bf.ttest(x,y,'tail','both');
+    [h, p, ci, stats_MPPCA]=ttest(x, y,'Tail','both');
+    d_MPPCA
+    bf10_MPPCA
+    pValue_MPPCA
+    stats_MPPCA
+    
+    d_P2S = computeCohen_d(x, z, 'paired');
+    [bf10_P2S,pValue_P2S] = bf.ttest(x, z, 'tail', 'both');
+    [h, p, ci, stats_P2S]=ttest(x, z,'Tail','both');
+    d_P2S
+    bf10_P2S
+    pValue_P2S
+    stats_P2S
+    
+    d = computeCohen_d(y, z, 'paired');
+    [bf10,pValue] = bf.ttest(y, z, 'tail', 'both');
+    [h, p, ci, stats]=ttest(y, z,'Tail','both');
+    d
+    bf10
+    pValue
+    stats
+end
 
-d_MPPCA = computeCohen_d(x,y, 'paired');
-[bf10_MPPCA,pValue_MPPCA] = bf.ttest(x,y,'tail','both');
-[h, p, ci, stats_MPPCA]=ttest(x, y,'Tail','both');
-d_MPPCA
-bf10_MPPCA
-pValue_MPPCA
-stats_MPPCA
-
-d_P2S = computeCohen_d(x, z, 'paired');
-[bf10_P2S,pValue_P2S] = bf.ttest(x, z, 'tail', 'both');
-[h, p, ci, stats_P2S]=ttest(x, z,'Tail','both');
-d_P2S
-bf10_P2S
-pValue_P2S
-stats_P2S
-
-d = computeCohen_d(y, z, 'paired');
-[bf10,pValue] = bf.ttest(y, z, 'tail', 'both');
-[h, p, ci, stats]=ttest(y, z,'Tail','both');
-d
-bf10
-pValue
-stats
 end

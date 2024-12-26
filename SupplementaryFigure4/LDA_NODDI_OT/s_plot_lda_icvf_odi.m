@@ -84,8 +84,6 @@ set(gca, 'tickdir', 'out', ...
     'xlim', [0.4 1.0], 'xtick', [0.4 0.7 1.0], ...
     'ylim', [0.1 0.4], 'ytick', [0.1 0.2 0.3 0.4], 'fontsize',15);
 
-cvlda_wo = crossval(lda_wo, 'Leaveout', 'on');
-cvErr_wo = kfoldLoss(cvlda_wo);
 resubErr_wo = resubLoss(lda_wo);
 
 M1 = 1.0;
@@ -127,8 +125,6 @@ set(gca, 'tickdir', 'out', ...
     'xlim', [0.4 1.0], 'xtick', [0.4 0.7 1.0], ...
     'ylim', [0.1 0.4], 'ytick', [0.1 0.2 0.3 0.4], 'fontsize',15);
 
-cvlda_P2S = crossval(lda_P2S, 'Leaveout', 'on');
-cvErr_P2S = kfoldLoss(cvlda_P2S);
 resubErr_P2S = resubLoss(lda_P2S);
 
 M1 = 1.0;
