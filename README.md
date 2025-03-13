@@ -1,4 +1,5 @@
 # GlaucomadMRIdenoising
+[![DOI](https://zenodo.org/badge/849727486.svg)](https://doi.org/10.5281/zenodo.15015932)
 Repository for data and code for replicating results and figures of the following paper:
 
 Taguma, D., Ogawa, S., & Takemura, H. (in prep) Evaluating the impact of denoising diffusion MRI data on detection sensitivity for optic tract abnormalities in glaucoma. 
