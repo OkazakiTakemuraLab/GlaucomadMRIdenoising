@@ -3,7 +3,7 @@
 
 Repository for data and code for replicating results and figures of the following paper:
 
-Taguma, D., Ogawa, S., & Takemura, H. (in revision) Evaluating the impact of denoising diffusion MRI data on detection sensitivity for optic tract abnormalities in glaucoma. 
+Taguma, D., Ogawa, S., & Takemura, H. (in revision) Evaluating the impact of denoising diffusion MRI data on tractometry metrics on optic tract abnormalities in glaucoma. 
 
 The code was written in MATLAB2021b and tested on Ubuntu 20.04 LTS.
 
