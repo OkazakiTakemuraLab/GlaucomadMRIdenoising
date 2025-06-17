@@ -1,6 +1,6 @@
 function s_evaluate_scanrescan_icvf
 
-% This script aims to replicate third panels in Supplementaly Figure 8 of the following
+% This script aims to replicate third panels in Supplementaly Figure 9 of the following
 % article:
 % Taguma, D., Ogawa, S. & Takemura, H. (2024) Evaluating the impact of
 % denoising in diffusion MRI-based tractometry of visual white matter

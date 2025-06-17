@@ -1,6 +1,6 @@
 function s_evaluate_scanrescan_md
 
-% This script aims to replicate second panels in Supplementaly Figure 8 of the following
+% This script aims to replicate top panels in Supplementaly Figure 8 of the following
 % article:
 % Taguma, D., Ogawa, S. & Takemura, H. (2024) Evaluating the impact of
 % denoising in diffusion MRI-based tractometry of visual white matter
@@ -8,8 +8,8 @@ function s_evaluate_scanrescan_md
 %
 % Daiki Taguma, NIPS SCBM/SOKENDAI
 
-%% Load left optic radiation data and compute averages
-load ../../Data/TractProfile/OR/LOR_TractProfile.mat
+%% Load left optic tract data and compute averages
+load ../../Data/TractProfile/OT/LOT_TractProfile.mat
 session1_mdMPPCA_lh = 1000*mean(all_profile.md1_MPPCA(11:90,:),1);
 session2_mdMPPCA_lh = 1000*mean(all_profile.md2_MPPCA(11:90,:),1);
 session1_mdwo_lh = 1000*mean(all_profile.md1_wo(11:90,:),1);
@@ -18,8 +18,8 @@ session1_mdP2S_lh = 1000*mean(all_profile.md1_P2S(11:90,:),1);
 session2_mdP2S_lh = 1000*mean(all_profile.md2_P2S(11:90,:),1);
 clear all_profile TractProfile
 
-%% Load right optic radiation data, compute combined averages
-load ../../Data/TractProfile/OR/ROR_TractProfile.mat
+%% Load right optic tract data, compute combined averages
+load ../../Data/TractProfile/OT/ROT_TractProfile.mat
 session1_mdMPPCA_rh = 1000*mean(all_profile.md1_MPPCA(11:90,:),1);
 session2_mdMPPCA_rh = 1000*mean(all_profile.md2_MPPCA(11:90,:),1);
 session1_mdwo_rh = 1000*mean(all_profile.md1_wo(11:90,:),1);
@@ -56,16 +56,16 @@ corr_eff_wo = corr(transpose(session1_mdwo_avg), transpose(session2_mdwo_avg));
 r_corr_eff_wo = round(corr_eff_wo, 2);
 set(gca, 'tickdir', 'out', ...
     'box', 'off', ...
-    'ylim', [0.6 0.9], 'ytick', [0.6 0.7 0.8 0.9], ...
-    'xlim', [0.6 0.9], 'xtick', [0.6 0.7 0.8 0.9], 'fontsize',15);
+    'ylim', [0.6 1.2], 'ytick', [0.6 0.9 1.2], ...
+    'xlim', [0.6 1.2], 'xtick', [0.6 0.9 1.2], 'fontsize',15);
 ylabel('Run 2 (PA)','fontsize',18);
 xlabel('Run 1 (AP)','fontsize',18);
 titletext = ['R = ', num2str(r_corr_eff_wo)];
-M = 0.9;
+M = 1.2;
 m = 0.6;
 text((M-m)*0.62+m, (M-m)*0.07+m, titletext, 'fontsize', 18);
 
-%%MPPCA
+%% MPPCA
 nexttile(2)
 scatter(session1_mdMPPCA_avg(1:30), session2_mdMPPCA_avg(1:30), 25, 'square', 'MarkerEdgeColor', '#669CCC', 'MarkerFaceColor', '#669CCC');
 hold on
@@ -82,8 +82,8 @@ corr_eff_MPPCA = corr(transpose(session1_mdMPPCA_avg), transpose(session2_mdMPPC
 r_corr_eff_MPPCA = round(corr_eff_MPPCA, 2);
 set(gca, 'tickdir', 'out', ...
     'box', 'off', ...
-    'ylim', [0.6 0.9], 'ytick', [0.6 0.7 0.8 0.9], ...
-    'xlim', [0.6 0.9], 'xtick', [0.6 0.7 0.8 0.9], 'fontsize',15);
+    'ylim', [0.6 1.2], 'ytick', [0.6 0.9 1.2], ...
+    'xlim', [0.6 1.2], 'xtick', [0.6 0.9 1.2], 'fontsize',15);
 ylabel('Run 2 (PA)','fontsize',18);
 xlabel('Run 1 (AP)','fontsize',18);
 titletext = ['R = ', num2str(r_corr_eff_MPPCA)];
@@ -106,8 +106,8 @@ corr_eff_P2S = corr(transpose(session1_mdP2S_avg), transpose(session2_mdP2S_avg)
 r_corr_eff_P2S = round(corr_eff_P2S, 2);
 set(gca, 'tickdir', 'out', ...
     'box', 'off', ...
-    'ylim', [0.6 0.9], 'ytick', [0.6 0.7 0.8 0.9], ...
-    'xlim', [0.6 0.9], 'xtick', [0.6 0.7 0.8 0.9], 'fontsize',15);
+    'ylim', [0.6 1.2], 'ytick', [0.6 0.9 1.2], ...
+    'xlim', [0.6 1.2], 'xtick', [0.6 0.9 1.2], 'fontsize',15);
 ylabel('Run 2 (PA)','fontsize',18);
 xlabel('Run 1 (AP)','fontsize',18);
 titletext = ['R = ', num2str(r_corr_eff_P2S)];
