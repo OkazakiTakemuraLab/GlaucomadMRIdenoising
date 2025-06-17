@@ -1,10 +1,9 @@
 function OT_P2S
 
-% This script aims to replicate top panels in Supplementaly Figure 7 of the following
+% This script aims to replicate panels in Supplementaly Figure 7C of the following
 % article:
-% Taguma, D., Ogawa, S. & Takemura, H. (2024) Evaluating the impact of
-% denoising in diffusion MRI-based tractometry of visual white matter
-% tracts in glaucoma patients.
+% Taguma, D., Ogawa, S. & Takemura, H. (in revision) Evaluating the impact of
+% denoising diffusion MRI data on tractometry metrics of optic tract abnormalities in glaucoma.
 %
 % Daiki Taguma, NIPS SCBM/SOKENDAI
 

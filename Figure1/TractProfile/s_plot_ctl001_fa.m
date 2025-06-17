@@ -2,9 +2,9 @@ function s_plot_ctl001_fa
 
 % This script aims to replicate a panel in Figure 1 of the following
 % article:
-% Taguma, D., Ogawa, S. & Takemura, H. (2024) Evaluating the impact of
-% denoising in diffusion MRI-based tractometry of visual white matter
-% tracts in glaucoma patients.
+% Taguma, D., Ogawa, S. & Takemura, H. (in revision) Evaluating the impact of
+% denoising diffusion MRI data on tractometry metrics of optic tract abnormalities in glaucoma.
+
 %
 % Daiki Taguma, NIPS SCBM/SOKENDAI
 
