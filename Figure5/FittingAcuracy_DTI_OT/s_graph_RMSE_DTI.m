@@ -2,8 +2,8 @@ function s_graph_RMSE_DTI
 
 % This script aims to replicate a panel A of Figure 5 in the following
 % article:
-% Taguma, D., Ogawa, S. & Takemura, H. (in revision) Evaluating the impact of
-% denoising diffusion MRI data on tractometry metrics of optic tract abnormalities in glaucoma.
+% Taguma, D., Ogawa, S. & Takemura, H. (2025) Evaluating the impact of denoising diffusion MRI data
+% on tractometry metrics of optic tract abnormalities in glaucoma. Scientific Reports, 15, 25812.
 %
 % Daiki Taguma, NIPS SCBM/SOKENDAI
 
